@@ -22,7 +22,7 @@ public class ChatHub : Hub
         _sharedDb.connections[Context.ConnectionId] = connection;
 
         await Clients.Group(connection.ChatRoom)
-                     .SendAsync("ReceiveMessage", "admin", $"{connection.Username} has joined {connection.ChatRoom}");
+                     .SendAsync("JoinSpecificChat", "admin", $"{connection.Username} has joined {connection.ChatRoom}");
     }
 
     public async Task SendMessage(string msg)
