@@ -36,6 +36,15 @@ function App() {
     }
   }
 
+  const sendMessage = async(message) => {
+    try {
+      await conn.invoke("SendMessage", message);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="App">
       <main>
@@ -52,7 +61,7 @@ function App() {
           </Row>
           {!conn
             ? <WaitingRoom joinChatRoom={joinChatRoom}></WaitingRoom>
-            : <ChatRoom msgs={messages}></ChatRoom>}
+            : <ChatRoom msgs={messages} sendMessage={sendMessage}></ChatRoom>}
         </Container>
       </main>
     </div>
